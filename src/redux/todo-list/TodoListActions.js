@@ -1,4 +1,4 @@
-import ActionTypes from '../actionTypes'
+import ActionTypes from '../ActionTypes'
 const { LOAD_TODO_LIST } = ActionTypes;
 
 const dataSource = [

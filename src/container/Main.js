@@ -1,5 +1,6 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
+import './App.scss'
 
 import HomePage from './home/HomePage'
 import LoginPage from './login/LoginPage'
@@ -7,7 +8,7 @@ import AboutPage from './about/AboutPage'
 
 const Main = () => {
   return (
-    <main>
+    <main className="main">
       <Switch>
         <Route exact path='/' component={HomePage}/>
         <Route path='/login' component={LoginPage}/>

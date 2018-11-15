@@ -1,4 +1,4 @@
-import TodoListInitialState from './todo-list/todoListInitialState'
+import TodoListInitialState from './todo-list/TodoListInitialState'
 
 const initialState = {
   todoList: new TodoListInitialState()

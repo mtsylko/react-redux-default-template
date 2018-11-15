@@ -1,17 +1,17 @@
 import React from 'react'
-import 'loginForm.scss'
+import './LoginForm.scss'
 
 const LoginForm = ({ onSubmit }) => {
-  return (<form className="login-form">
-      <label>
+  return (<form className="login-form" method='POST' onSubmit={ onSubmit }>
+      <label style={{display: 'block', marginBottom: 10}}>
         Username
-        <input type="text" name="username" />
+        <input style={{float: 'right', marginLeft: 5}} type="text" name="username" />
       </label>
-      <label>
+      <label style={{display: 'block', marginBottom: 10}}>
         Password
-        <input type="password" name="password" />
+        <input  style={{float: 'right', marginLeft: 5}} type="password" name="password" />
       </label>
-      <input type="submit" value="Submit" />
+      <input style={{float: 'right'}} type="submit" value="Submit" />
     </form>
   );
 };

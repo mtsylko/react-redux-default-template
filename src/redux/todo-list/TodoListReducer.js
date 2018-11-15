@@ -1,5 +1,5 @@
-import initialState from './todoListInitialState'
-import ActionTypes from '../actionTypes'
+import initialState from './TodoListInitialState'
+import ActionTypes from '../ActionTypes'
 
 const { LOAD_TODO_LIST } = ActionTypes;
 
