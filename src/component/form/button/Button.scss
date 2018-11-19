@@ -1,5 +1,7 @@
 .btn {
   float: right;
+  display: block;
+  width:100%;
 }
 
 .styled-btn {
@@ -14,4 +16,5 @@
   margin: 4px 2px;
   cursor: pointer;
   outline: none;
+  font-weight: 600;
 }

@@ -1,0 +1,38 @@
+.checkbox {
+  padding-bottom: 3%;
+  .checkbox-label {
+    position: relative;
+    top: 3px;
+    right: 3px;
+    font-weight: 500;
+    color: dimgray;
+  }
+  .checkbox-input {
+    visibility: hidden;
+    display: block;
+    height: 0;
+    width: 0;
+    position: absolute;
+    overflow: hidden;
+  }
+  .outer-span {
+    margin-left: 5px;
+    margin-top: 2px;
+    float: right;
+    height: 15px;
+    width: 15px;
+    border: 2px solid orange;
+    padding: 3px;
+    display: inline-block;
+    // position: relative;
+  }
+  [type=checkbox]:checked  {
+    + .outer-span > .inner-span {
+      float: right;
+      height: 15px;
+      width: 15px;
+      display: inline-block;
+      background: orange;
+    }
+  }
+}

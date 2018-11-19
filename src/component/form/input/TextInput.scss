@@ -1,11 +1,16 @@
-.text-input {
-  float: right;
-  margin-left: 5px;
-  border: 2px solid orange;
-  outline: none;
-}
+.text-input-compound {
+  .text-input {
+    float: right;
+    margin-left: 5px;
+    border: 2px solid orange;
+    outline: none;
+    line-height: 18px;
+  }
 
-.input-label {
-  display: block;
-  margin-bottom: 10px;
+  .input-label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 500;
+    color: dimgray;
+  }
 }

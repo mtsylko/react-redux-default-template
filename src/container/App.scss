@@ -1,8 +1,14 @@
 .header {
   grid-area: header;
+  padding-left: 0;
+  margin-left: 5%;
+  margin-right: 5%;
+  background-color: orange;
   .nav-bar {
+    flex: 1;
     .nav-list {
       display: flex;
+      padding-left: 0;
       flex-direction: row;
       list-style-type: none;
       justify-items: center;
@@ -10,7 +16,9 @@
       .nav-item {
         flex: 1;
         a {
-          color: #000000;
+          color: whitesmoke;
+          margin-left: 10px;
+          font-weight: bold;
           text-decoration: none;
         }
       }
@@ -23,10 +31,17 @@
   display: flex;
   justify-items: center;
   justify-content: center;
+  margin-top: 5%;
+  margin-left: 5%;
+  margin-right: 5%;
 }
 
 .App {
   display: grid;
   grid-template-rows: 50px 1fr 30px;
   grid-template-areas: 'header' 'content' 'footer';
+}
+
+.form.align-right {
+    float: right;
 }
