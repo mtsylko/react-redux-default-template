@@ -1,5 +1,6 @@
 import React from 'react'
 import './TextInput.scss'
+import PropTypes from 'prop-types';
 
 const TextInput = ({ name, value, label, onChange, isPassword, className }) => {
   const inputClassName = label ? "text-input" : null;
@@ -13,4 +14,16 @@ const TextInput = ({ name, value, label, onChange, isPassword, className }) => {
   </div>);
 };
 
+TextInput.propTypes = {
+  name: PropTypes.string.isRequired,
+  value: PropTypes.any,
+  label: PropTypes.string,
+  isPassword: PropTypes.bool
+};
+
+TextInput.defaultProps = {
+  isPassword: false
+};
+
 export default TextInput;
+

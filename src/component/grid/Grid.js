@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Header from './Header'
 import Row from './Row'
 import './Grid.scss'
+import PropTypes from 'prop-types';
 
 function InvalidPropertyException(message) {
   this.message = message;
@@ -29,3 +30,13 @@ export default class Grid extends Component {
   }
 
 }
+
+Grid.propTypes = {
+  columns: PropTypes.array,
+  dataSource: PropTypes.array
+};
+
+Grid.defaultProps = {
+  columns: [],
+  dataSource: []
+};
