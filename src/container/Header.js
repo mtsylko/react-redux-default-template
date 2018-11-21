@@ -1,19 +1,25 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Navbar, Nav, NavItem } from 'react-bootstrap'
+import { LinkContainer } from 'react-router-bootstrap';
 import './App.scss'
+
+const LinkWrapper = ({ label, to, key, exact } ) => {
+  return <LinkContainer to={to} exact={exact}>
+    <NavItem eventKey={key} href="#">
+      {label}
+    </NavItem>
+  </LinkContainer>
+};
 
 const Header = () => {
   return (
-    <header className="header">
-      <nav className="nav-bar">
-        <ul className="nav-list">
-          <li className="nav-item"><Link to='/login'>Login</Link></li>
-          <li className="nav-item"><Link to='/'>Home</Link></li>
-          <li className="nav-item"><Link to='/about'>About</Link></li>
-        </ul>
-      </nav>
-    </header>
-  );
+    <Navbar>
+      <Nav>
+        <LinkWrapper to="/login" label="Login" key={1}/>
+        <LinkWrapper to="/" exact label="Home" key={2}/>
+        <LinkWrapper to="/about" exact label="About" key={3}/>
+      </Nav>
+    </Navbar>);
 };
 
 export default Header;

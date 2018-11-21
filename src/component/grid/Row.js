@@ -2,7 +2,7 @@ import React from 'react'
 import './Grid.scss'
 
 const Row = ({ dataSource, columns }) => {
-  return (<tr className="row">
+  return (<tr className="">
     {columns.map(column => {
       return <td>{dataSource[column.name]}</td>
     })}

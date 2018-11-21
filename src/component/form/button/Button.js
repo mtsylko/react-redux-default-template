@@ -1,13 +1,16 @@
 import React from 'react'
 import './Button.scss'
 import PropTypes from 'prop-types';
+import { Button } from 'react-bootstrap'
 
-const Button = ({ value }) => {
-  return <input className="btn styled-btn" type="button" value={value}/>
+const WrappedButton = ({ label, type, onClickHandler }) => {
+  return <Button bsStyle="primary" type={type} onClick={ onClickHandler }>{label}</Button>
 };
 
-Button.propTypes = {
-  value: PropTypes.any.isRequired
+WrappedButton.propTypes = {
+  label: PropTypes.string.isRequired,
+  type: PropTypes.string,
+  onClickHandler: PropTypes.func
 };
 
-export default Button;
+export default WrappedButton;

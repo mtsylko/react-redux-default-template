@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import Header from './Header'
 import Row from './Row'
-import './Grid.scss'
 import PropTypes from 'prop-types';
+import { Table } from 'react-bootstrap'
+import './Grid.scss'
+
 
 function InvalidPropertyException(message) {
   this.message = message;
@@ -21,12 +23,12 @@ export default class Grid extends Component {
 
   render() {
     const { dataSource , columns } = this.props;
-    return (<table className="grid">
+    return (<Table className="grid" bordered>
       <Header columns={columns}/>
       {dataSource.map(item => {
         return <Row dataSource={item} columns={columns}/>
       })}
-    </table>);
+    </Table>);
   }
 
 }

@@ -1,28 +1,25 @@
 import React from 'react'
 import './TextInput.scss'
 import PropTypes from 'prop-types';
+import FieldGroup from '../FieldGroup'
 
-const TextInput = ({ name, value, label, onChange, isPassword, className }) => {
-  const inputClassName = label ? "text-input" : null;
-  const inputElement = <input className={inputClassName} type={isPassword ? "password" : "text"} name={name} value={value} onChange={onChange}/>;
-  if(!label) return inputElement;
-  return (<div className="text-input-compound">
-    <label className="input-label">
-      {label}
-      {inputElement}
-    </label>
-  </div>);
+const TextInput = ({ name, value, label, placeholder, onChange, type }) => {
+  return <FieldGroup
+    type={type}
+    label={label}
+    placeholder={placeholder}/>
 };
 
 TextInput.propTypes = {
   name: PropTypes.string.isRequired,
   value: PropTypes.any,
   label: PropTypes.string,
-  isPassword: PropTypes.bool
+  type: PropTypes.string,
+  placeholder: PropTypes.string
 };
 
 TextInput.defaultProps = {
-  isPassword: false
+  type: 'text'
 };
 
 export default TextInput;

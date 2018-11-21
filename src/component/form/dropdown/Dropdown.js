@@ -1,18 +1,15 @@
 import React from 'react'
-import { SplitButton, MenuItem } from 'react-bootstrap';
+import { SplitButton, MenuItem, DropdownButton } from 'react-bootstrap';
 import './Dropdown.scss'
 const uuid = require('uuid/v4');
 
-
 const Dropdown = ({ options, value }) => {
-  const optionList = options.map(item => (<MenuItem key={item.value}
-                                                    eventKey={item.value}
+  const optionList = options.map(item => (<MenuItem eventKey={item.value}
                                                     active={item.value === value}>{item.label}</MenuItem>));
-  return (<SplitButton
+  return <DropdownButton
     bsStyle='default'
     title='Choose an option'
-    id={`dropdown-${uuid()}`}
-    key={value}>{optionList}</SplitButton>);
+    id={`dropdown-${uuid()}`}>{optionList}</DropdownButton>
 };
 
 export default Dropdown;
