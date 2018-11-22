@@ -1,23 +1,24 @@
 import React from 'react'
-import TextInput from './input/TextInput'
-// import Form from './Form'
-import Button from './button/Button'
-import { Panel, Form, FormGroup, ControlLabel, FormControl } from 'react-bootstrap'
+import TextInput from '../input/TextInput'
+import Form from '../Form'
+import Button from '../button/Button'
+import { Panel, FormGroup, ControlLabel, FormControl } from 'react-bootstrap'
 import './LoginForm.scss'
 
 const LoginForm = ({ onSubmit }) => {
+
   return (<Panel bsStyle="primary">
     <Panel.Heading>
       <Panel.Title componentClass="h3">Sign In</Panel.Title>
     </Panel.Heading>
     <Panel.Body>
-      <form onSubmit={ onSubmit }>
+      <Form onSubmit={ onSubmit }>
         <FormGroup>
-          <TextInput name="username" label="Username"/>
-          <TextInput name="password" label="Password" type='password'/>
+          <TextInput key={1} name="username" label="Username" />
+          <TextInput key={2} name="password" label="Password" type='password' />
           <Button type="submit" label="Sign In"/>
         </FormGroup>
-      </form>
+      </Form>
     </Panel.Body>
   </Panel>);
 };

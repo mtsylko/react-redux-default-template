@@ -5,9 +5,11 @@ import FieldGroup from '../FieldGroup'
 
 const TextInput = ({ name, value, label, placeholder, onChange, type }) => {
   return <FieldGroup
+    name={name}
     type={type}
     label={label}
-    placeholder={placeholder}/>
+    placeholder={placeholder}
+    onChange={onChange}/>
 };
 
 TextInput.propTypes = {

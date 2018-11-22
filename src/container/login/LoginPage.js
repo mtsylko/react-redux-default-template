@@ -1,15 +1,15 @@
 import React from 'react'
 import './LoginPage.scss'
-import LoginForm from '../../component/form/LoginForm'
+import LoginForm from '../../component/form/login-form/LoginForm'
 import * as loginActions from '../../redux/login/loginActions'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
 class LoginPage extends React.Component {
 
-  onSubmit = ( e, ...rest ) => {
-    if(e) e.preventDefault();
-    console.log("submit", e, e.target.value)
+  onSubmit = ( values, errors ) => {
+    console.log(values, errors);
+    this.props.actions.login(values);
   };
 
   render() {
@@ -21,14 +21,14 @@ class LoginPage extends React.Component {
 }
 
 function stateToProps(state) {
-  console.log('token', state.loginReducer.token);
   return {
+    token: state.login.form.token
   }
 }
 
 function dispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators({...loginActions})
+    actions: bindActionCreators({...loginActions}, dispatch)
   }
 }
 

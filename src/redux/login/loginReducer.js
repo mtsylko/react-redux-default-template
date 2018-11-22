@@ -1,5 +1,5 @@
 import ActionTypes from '../actionTypes'
-import initialState from './loginInitialState'
+import InitialState from './loginInitialState'
 
 const {
   LOGIN_REQUEST_ACTION,
@@ -7,15 +7,17 @@ const {
   LOGIN_ERROR_ACTION
 } = ActionTypes;
 
+const initialState = new InitialState();
+
 
 export default function loginReducer(state = initialState, action) {
   switch (action.type) {
     case LOGIN_REQUEST_ACTION:
-      return state.setIn(['isFetching'], true);
+      return state.setIn(['form', 'isFetching'], true);
     case LOGIN_SUCCESS_ACTION:
-      return state.setIn(['isFetching'], false).setIn(['token'], action.payload.token);
+      return state.setIn(['form', 'isFetching'], false).setIn(['form', 'token'], action.payload.token);
     case LOGIN_ERROR_ACTION:
-      return state.setIn(['isFetching'], false).setIn(['token'], null);
+      return state.setIn(['form', 'isFetching'], false).setIn(['form', 'token'], null);
     default:
       return state;
   }

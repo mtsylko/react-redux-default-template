@@ -1,9 +1,15 @@
 import { Record } from 'immutable'
 
-const loginInitialState = new Record({
+const LoginForm = Record({
   isFetching: false,
   token: null,
   error: null
 });
 
-export default loginInitialState;
+const LoginInitialState = Record({
+  form: new LoginForm()
+});
+
+export default LoginInitialState;
+
+
