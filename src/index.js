@@ -9,6 +9,7 @@ import initialSate from './redux/initialState'
 import './index.scss'
 
 const store = configureStore(initialSate);
+
 ReactDOM.render((
   <Provider store={store}>
     <Router>

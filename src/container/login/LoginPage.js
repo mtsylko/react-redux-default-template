@@ -22,7 +22,7 @@ class LoginPage extends React.Component {
 
 function stateToProps(state) {
   return {
-    token: state.login.form.token
+    token: state.login.token
   }
 }
 

@@ -15,9 +15,11 @@ export default function loginReducer(state = initialState, action) {
     case LOGIN_REQUEST_ACTION:
       return state.setIn(['form', 'isFetching'], true);
     case LOGIN_SUCCESS_ACTION:
-      return state.setIn(['form', 'isFetching'], false).setIn(['form', 'token'], action.payload.token);
+      const token = action.payload.token;
+      localStorage.setItem('token', token);
+      return state.setIn(['form', 'isFetching'], false).setIn(['token'], token);
     case LOGIN_ERROR_ACTION:
-      return state.setIn(['form', 'isFetching'], false).setIn(['form', 'token'], null);
+      return state.setIn(['form', 'isFetching'], false).setIn(['token'], null);
     default:
       return state;
   }

@@ -4,8 +4,8 @@ const uuid = require('uuid/v4');
 
 const FieldGroup = ({ id, label, help, ...props }) => {
   return (
-    <FormGroup controlId={`input-${uuid()}`}>
-      <ControlLabel>{label}</ControlLabel>
+    <FormGroup controlId={`control-${uuid()}`}>
+      {label && <ControlLabel>{label}</ControlLabel>}
       <FormControl {...props} />
       {help && <HelpBlock>{help}</HelpBlock>}
     </FormGroup>

@@ -10,8 +10,7 @@ const {
 export function login(credentials) {
   return dispatch => {
     dispatch({type: LOGIN_REQUEST_ACTION, payload: { isFetching: true } });
-    loginDao.login(credentials).then(response => {
-      console.log('response', response)
+    loginDao.fakeLogin(credentials).then(response => {
       const { token } = response;
       dispatch({ type: LOGIN_SUCCESS_ACTION, payload: { isFetching: false,  token } });
     }).catch(response => {

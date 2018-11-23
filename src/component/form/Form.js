@@ -46,7 +46,8 @@ export default class Form extends React.Component {
   };
 
   render() {
-    const children = this.getFields(this);
+    // const children = this.getFields(this);
+    const { children } = this.props;
     const { createElementWithProps, onSubmit } = this;
     const childrenWithProps = children.map(item => createElementWithProps.call(this, item));
     return <form method='POST' onSubmit={ onSubmit }>
