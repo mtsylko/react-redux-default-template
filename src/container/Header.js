@@ -12,13 +12,23 @@ const LinkWrapper = ({ label, to, key, exact } ) => {
 };
 
 const Header = () => {
+  const visibleRoutes = [];
+  const isAuth = !!localStorage.getItem('token');
+  if(isAuth) {
+    visibleRoutes.push(
+      <LinkWrapper to="/" exact label="Home" key="home"/>,
+      <LinkWrapper to="/about" label="About" key="about"/>,
+      <LinkWrapper to="/profile" label="Profile" key="profile"/>
+    );
+  }
   return (
     <Navbar>
       <Nav>
-        <LinkWrapper to="/login" label="Login" key={1}/>
-        <LinkWrapper to="/" exact label="Home" key={2}/>
-        <LinkWrapper to="/about" exact label="About" key={3}/>
+        {visibleRoutes}
       </Nav>
+      {isAuth && <Nav pullRight>
+        <LinkWrapper to="/logout" label="Logout" key="logout" pullRight/>
+      </Nav>}
     </Navbar>);
 };
 

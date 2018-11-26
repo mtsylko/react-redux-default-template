@@ -42,6 +42,7 @@ export default class RadioGroup extends Component {
 
 
 }
+
 RadioGroup.propTypes = {
   name: PropTypes.string.isRequired,
   value: PropTypes.any,

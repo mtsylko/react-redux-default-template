@@ -4,6 +4,7 @@ import LoginForm from '../../component/form/login-form/LoginForm'
 import * as loginActions from '../../redux/login/loginActions'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import { Redirect } from 'react-router-dom'
 
 class LoginPage extends React.Component {
 
@@ -13,6 +14,8 @@ class LoginPage extends React.Component {
   };
 
   render() {
+    const isAuth = !!this.props.token;
+    if(isAuth) return <Redirect to='/'/>
     return (<div className="login-page">
       <LoginForm onSubmit={this.onSubmit}/>
     </div>);
