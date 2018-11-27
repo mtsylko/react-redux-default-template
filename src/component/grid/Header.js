@@ -2,11 +2,14 @@ import React from 'react'
 import './Grid.scss'
 
 const Header = ({ columns, sort }) => {
-  return (<tr className="">
-    {columns.map(column => {
-      return <th>{column.title}</th>
-    })}
-  </tr>);
+  return (
+    <thead>
+    <tr key="header" className="">
+      {columns.map((column, index) => {
+        return <th key={`${column.name || index}`}>{column.title}</th>
+      })}
+    </tr>
+    </thead>);
 };
 
 export default Header;

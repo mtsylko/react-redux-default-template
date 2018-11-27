@@ -4,7 +4,8 @@ import InitialState from './loginInitialState'
 const {
   LOGIN_REQUEST_ACTION,
   LOGIN_SUCCESS_ACTION,
-  LOGIN_ERROR_ACTION
+  LOGIN_ERROR_ACTION,
+  LOGOUT_ACTION
 } = ActionTypes;
 
 const initialState = new InitialState();
@@ -20,6 +21,9 @@ export default function loginReducer(state = initialState, action) {
       return state.setIn(['form', 'isFetching'], false).setIn(['token'], token);
     case LOGIN_ERROR_ACTION:
       return state.setIn(['form', 'isFetching'], false).setIn(['token'], null);
+    case LOGOUT_ACTION:
+      localStorage.setItem('token', '');
+      return state.setIn(['token'], null);
     default:
       return state;
   }

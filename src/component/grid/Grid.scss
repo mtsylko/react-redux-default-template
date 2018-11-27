@@ -1,3 +1,19 @@
 .grid {
+  table {
+    border-collapse: collapse;
+    th {
+      background-color: #337ab7;
+      color: whitesmoke;
+    }
+    td, th {
+      text-align: center;
+      height: 35px;
+      border-right: 1px solid #2e6da4;
+    }
+    tr {
+      border: 1px solid #2e6da4;
+
+    }
+  }
 
 }

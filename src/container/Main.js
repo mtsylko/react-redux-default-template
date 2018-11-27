@@ -15,7 +15,6 @@ const ProtectedRoot = ({ component: Component, ...rest }) => {
 };
 
 const Main = () => {
-
   return (
     <main className="main">
       <Switch>

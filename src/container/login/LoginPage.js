@@ -15,6 +15,7 @@ class LoginPage extends React.Component {
 
   render() {
     const isAuth = !!this.props.token;
+    console.log('this.props.token', this.props.token)
     if(isAuth) return <Redirect to='/'/>
     return (<div className="login-page">
       <LoginForm onSubmit={this.onSubmit}/>
@@ -31,7 +32,7 @@ function stateToProps(state) {
 
 function dispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators({...loginActions}, dispatch)
+    actions: bindActionCreators({ ...loginActions }, dispatch)
   }
 }
 

@@ -1,15 +1,30 @@
 import React from 'react'
 import { Navbar, Nav, NavItem } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap';
+import { Link } from 'react-router-dom'
+import ProfileLogo from '../component/profile-logo/ProfileLogo'
 import './App.scss'
 
-const LinkWrapper = ({ label, to, key, exact } ) => {
+const LinkWrapper = ({ label, to, key, exact, className } ) => {
   return <LinkContainer to={to} exact={exact}>
-    <NavItem eventKey={key} href="#">
+    <NavItem eventKey={key} href="#" className={className}>
       {label}
     </NavItem>
   </LinkContainer>
 };
+
+
+const ProfileLink = () => {
+  return <div className="profile-link">
+    <Navbar.Header>
+      <Navbar.Brand>
+        <ProfileLogo/>
+      </Navbar.Brand>
+      <Navbar.Toggle />
+    </Navbar.Header>
+  </div>
+};
+
 
 const Header = () => {
   const visibleRoutes = [];
@@ -21,15 +36,19 @@ const Header = () => {
       <LinkWrapper to="/profile" label="Profile" key="profile"/>
     );
   }
-  return (
+  return (<div className="header">
     <Navbar>
+      <Nav>
+        {isAuth && <ProfileLink/>}
+      </Nav>
       <Nav>
         {visibleRoutes}
       </Nav>
       {isAuth && <Nav pullRight>
-        <LinkWrapper to="/logout" label="Logout" key="logout" pullRight/>
+        <LinkWrapper to="/logout" label="Logout" key="logout" pullRight className="logout"/>
       </Nav>}
-    </Navbar>);
+    </Navbar>
+  </div>);
 };
 
 export default Header;
