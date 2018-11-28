@@ -1,6 +1,7 @@
 import React from 'react'
 import Grid from '../../component/grid/Grid'
 import './AboutPage.scss'
+import fakeDataSource from './fake_datasource.json'
 
 const COLUMNS = [
   {
@@ -14,16 +15,6 @@ const COLUMNS = [
 
 ];
 
-const dataSource = [
-  {
-    firstname: 'Lisa',
-    surname: 'Edelstein'
-  },
-  {
-    firstname: 'Peter',
-    surname: 'Pan'
-  }
-];
 
 export default class AboutPage extends React.Component {
 
@@ -33,7 +24,7 @@ export default class AboutPage extends React.Component {
         This template was created by Maxim Tsylko.
         You can use it freely but don't forget to mention the author.
       </pre> */}
-      <Grid columns={COLUMNS} dataSource={dataSource}/>
+      <Grid columns={COLUMNS} dataSource={fakeDataSource}/>
     </div>
   }
 

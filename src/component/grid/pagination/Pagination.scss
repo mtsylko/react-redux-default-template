@@ -1,0 +1,17 @@
+.pagination {
+  display: flex;
+  flex-direction: column;
+  .item {
+    &:hover, &:visited, &:link, &:active {
+      color: #333333;
+      text-decoration: none;
+    }
+    padding: 5px 10px 5px 10px;
+    border: 1px solid #ddd;
+    margin-right: 5px;
+    &.active {
+      background-color: #eeeeee;
+    }
+  }
+
+}

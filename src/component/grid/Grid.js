@@ -2,8 +2,10 @@ import React, { Component } from 'react'
 import Header from './Header'
 import Row from './Row'
 import PropTypes from 'prop-types';
-import { Table, Pagination } from 'react-bootstrap'
+import { Table, Pager } from 'react-bootstrap'
+import Pagination from './pagination/Pagination'
 import './Grid.scss'
+import PageSizer from "./page-sizer/PageSizer";
 
 
 function InvalidPropertyException(message) {
@@ -28,33 +30,36 @@ export default class Grid extends Component {
     }
   }
 
-  onPageSelected = (...args) => {
-    console.log(args)
+  onPageChange = (page) => {
+    const { pagination }  = this.state;
+    const updatedPagination = { ...pagination };
+    updatedPagination.page = page;
+    this.setState({ pagination: updatedPagination});
   };
 
-
-  renderPagination = () => {
-    let items = [];
-    const { page } = this.state.pagination;
-    for (let number = 1; number <= 10; number++) {
-      items.push(
-        <Pagination.Item active={page === number}>{number}</Pagination.Item>
-      );
-    }
-    return <Pagination onSelect={this.onPageSelected} bsSize="medium">{items}</Pagination>
+  onPageSizeChange = (size) => {
+    const { pagination }  = this.state;
+    const updatedPagination = { ...pagination };
+    updatedPagination.size = size;
+    this.setState({ pagination: updatedPagination});
   };
+
 
   render() {
     const { dataSource , columns } = this.props;
-    const { renderPagination } = this;
+    const { pagination : { page, size } } = this.state;
+    const numberOfPages = Math.ceil(dataSource.length / size);
+    console.log('size', size)
+    const { onPageChange, onPageSizeChange } = this;
     return (<div className="grid">
       <Table bordered>
         <Header columns={columns}/>
         <tbody>{dataSource.map((item, index) => {
           return <Row id={item.id || index} dataSource={item} columns={columns}/>
-        })}</tbody>
+        }).slice((page- 1) * size, page * size)}</tbody>
       </Table>
-      {renderPagination()}
+      <Pagination numberOfPages={numberOfPages} onPageChange={onPageChange}/>
+      <PageSizer onSelect={onPageSizeChange}/>
     </div>);
   }
 
