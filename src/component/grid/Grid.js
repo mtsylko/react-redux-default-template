@@ -2,11 +2,12 @@ import React, { Component } from 'react'
 import Header from './Header'
 import Row from './Row'
 import PropTypes from 'prop-types';
-import { Table, Pager } from 'react-bootstrap'
-import Pagination from './pagination/Pagination'
-import './Grid.scss'
-import PageSizer from "./page-sizer/PageSizer";
 
+import Pagination from './pagination/Pagination'
+import PageSizer from './page-sizer/PageSizer';
+import PageCount from './page-count/PageCount'
+
+import './Grid.scss'
 
 function InvalidPropertyException(message) {
   this.message = message;
@@ -38,10 +39,7 @@ export default class Grid extends Component {
   };
 
   onPageSizeChange = (size) => {
-    const { pagination }  = this.state;
-    const updatedPagination = { ...pagination };
-    updatedPagination.size = size;
-    this.setState({ pagination: updatedPagination});
+    this.setState({ pagination: {size, page: 1}});
   };
 
 
@@ -49,17 +47,19 @@ export default class Grid extends Component {
     const { dataSource , columns } = this.props;
     const { pagination : { page, size } } = this.state;
     const numberOfPages = Math.ceil(dataSource.length / size);
-    console.log('size', size)
     const { onPageChange, onPageSizeChange } = this;
     return (<div className="grid">
-      <Table bordered>
+      <table>
         <Header columns={columns}/>
         <tbody>{dataSource.map((item, index) => {
           return <Row id={item.id || index} dataSource={item} columns={columns}/>
-        }).slice((page- 1) * size, page * size)}</tbody>
-      </Table>
-      <Pagination numberOfPages={numberOfPages} onPageChange={onPageChange}/>
-      <PageSizer onSelect={onPageSizeChange}/>
+        }).slice((page - 1) * size, page * size)}</tbody>
+      </table>
+      <div className="page-navigation">
+        <Pagination numberOfPages={numberOfPages} activePage={page} onPageChange={onPageChange}/>
+        <PageCount maxPage={numberOfPages} activePage={page} onPageChange={onPageChange}/>
+        <PageSizer onSelect={onPageSizeChange}/>
+      </div>
     </div>);
   }
 

@@ -1,6 +1,9 @@
 .grid {
   table {
+    width: 100%;
     border-collapse: collapse;
+    table-layout: fixed;
+    word-wrap: break-word;
     th {
       background-color: #337ab7;
       color: whitesmoke;
@@ -8,20 +11,26 @@
     td, th {
       text-align: center;
       height: 35px;
-      border-right: 1px solid #2e6da4;
+      border-right: 1px solid #ddd;
     }
     tr {
-      border: 1px solid #2e6da4;
-
+      border: 1px solid #ddd;
     }
   }
 
-  .pagination {
-    float: left;
-  }
 
-  .page-sizer {
-    float: right;
+  .page-navigation {
+    display: flex;
+    justify-content: space-between;
+    .pagination {}
+    .page-count {
+      position: relative;
+      top: 15px;
+    }
+    .page-sizer {
+      position: relative;
+      top: 12px;
+    }
   }
 
 }
