@@ -30,10 +30,10 @@ export default class Pagination extends React.PureComponent  {
     const { activePage: curActivePage, numberOfPages } = this.props;
     const { activePage: prevActivePage } = prevProps;
     if(curActivePage!== prevActivePage) {
-      const rangeIndex = Math.ceil(curActivePage / 10);
-      const visibleFrom = (rangeIndex - 1) * 10;
+      const rangeIndex = Math.floor(curActivePage / 10) + 1;
+      const visibleFrom = (rangeIndex - 1) * 10 !== 0 ? (rangeIndex - 1) * 10 : 1;
       const visibleTo = Math.min(numberOfPages, rangeIndex * 10);
-      if(curActivePage >= visibleFrom && curActivePage <= visibleFrom){
+      if(curActivePage >= visibleFrom && curActivePage <= visibleTo){
         const state = _.clone(this.state);
         state.range = { from: visibleFrom, to: visibleTo };
         this.setState(state);
@@ -75,9 +75,9 @@ export default class Pagination extends React.PureComponent  {
 
     return (
       <div className="pagination">
-        <a className="left-nav-arrow" href='#' onClick={(e) => onLeftShift(e)}><img className="gray-filter" src={require('../icons/chevron-left-2x.png')} alt=''/></a>
+        <span className="glyphicon glyphicon-chevron-left" href='#' onClick={(e) => onLeftShift(e)}/>
         {pages.map(page => <Item pageNumber={page} onChoosePage={this.onChoosePage} isActive={activePage === page}/>)}
-        <a className="right-nav-arrow" href='#' onClick={(e) => onRightShift(e)}><img className="gray-filter" src={require('../icons/chevron-right-2x.png')} alt=''/></a>
+        <span className="glyphicon glyphicon-chevron-right" href='#' onClick={(e) => onRightShift(e)}/>
       </div>
     );
   }

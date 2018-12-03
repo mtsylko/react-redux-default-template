@@ -20,6 +20,7 @@ export default class Dropdown extends React.PureComponent {
     const optionList = options.map(item => (<MenuItem eventKey={item.value}
                                                       active={item.value === value}>{item.label}</MenuItem>));
     return <DropdownButton
+      {...this.props}
       onSelect={this.onChange}
       bsStyle='default'
       title={this.state.selectedItem}

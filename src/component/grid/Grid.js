@@ -46,6 +46,7 @@ export default class Grid extends Component {
   render() {
     const { dataSource , columns } = this.props;
     const { pagination : { page, size } } = this.state;
+
     const numberOfPages = Math.ceil(dataSource.length / size);
     const { onPageChange, onPageSizeChange } = this;
     return (<div className="grid">

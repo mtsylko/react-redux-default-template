@@ -19,7 +19,7 @@ export default class PageSizer extends React.PureComponent {
   render() {
     return (
       <div className="page-sizer">
-        <Dropdown options={this.getOptionList()} initialValue={this.state.size} onSelect={this.props.onSelect}/>
+        <Dropdown pullRight options={this.getOptionList()} initialValue={this.state.size} onSelect={this.props.onSelect}/>
       </div>
     );
   }

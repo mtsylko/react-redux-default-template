@@ -1,27 +1,21 @@
 import React from 'react'
-import { Navbar, Nav, NavItem } from 'react-bootstrap'
-import { LinkContainer } from 'react-router-bootstrap';
+import { Navbar, Nav } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import ProfileLogo from '../component/profile-logo/ProfileLogo'
 import './App.scss'
 
+
 const LinkWrapper = ({ label, to, key, exact, className } ) => {
-  return <LinkContainer to={to} exact={exact}>
-    <NavItem eventKey={key} href="#" className={className}>
-      {label}
-    </NavItem>
-  </LinkContainer>
+  return <li key={key} className={className}>
+      <Link to={to} exact={exact}>{label}</Link>
+    </li>
 };
+
 
 
 const ProfileLink = () => {
   return <div className="profile-link">
-    <Navbar.Header>
-      <Navbar.Brand>
-        <ProfileLogo/>
-      </Navbar.Brand>
-      <Navbar.Toggle />
-    </Navbar.Header>
+    <ProfileLogo/>
   </div>
 };
 
@@ -37,17 +31,11 @@ const Header = () => {
     );
   }
   return (<div className="header">
-    <Navbar>
-      <Nav>
-        {isAuth && <ProfileLink/>}
-      </Nav>
-      <Nav>
-        {visibleRoutes}
-      </Nav>
-      {isAuth && <Nav pullRight>
-        <LinkWrapper to="/logout" label="Logout" key="logout" pullRight className="logout"/>
-      </Nav>}
-    </Navbar>
+    <ul className="menu-items">
+      {isAuth && <ProfileLink/>}
+      {visibleRoutes}
+      {isAuth && <LinkWrapper to="/logout" label="Logout" key="logout" pullRight className="logout"/>}
+    </ul>
   </div>);
 };
 

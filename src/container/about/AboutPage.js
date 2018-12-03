@@ -10,7 +10,7 @@ const COLUMNS = [
   },
   {
     name: 'surname',
-    title: 'Surnamename'
+    title: 'Surname'
   }
 
 ];

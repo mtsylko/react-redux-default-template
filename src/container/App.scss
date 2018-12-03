@@ -1,3 +1,5 @@
+@import '../variables';
+
 .main {
   grid-area: content;
   display: flex;
@@ -19,20 +21,40 @@
 }
 
 .header {
-  .container {
-    height: 75px;
-    width: 1500px;
-    .navbar-nav {
-      height: 75px;
-      margin-right: 20px;
-      li {
-        a {
-          padding: 30px 30px 25px 30px;
-        }
+  width: 100%;
+  background-color: white;
+  border-bottom: #337ab7 solid 3px;
+  height: 72px;
+  .menu-items {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    li {
+      list-style-type: none;
+      text-align: center;
+      flex-grow: 1;
+      &.logout {
+        flex-grow: 1;
+        text-align: center;
+        padding-right: 60px;
+      }
+      a {
+        display: table-cell;
+        width: 100%;
+        color: #333333;
+        padding: 25px 40px 25px 40px;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        font-weight: 600;
+        float: right;
+        &:hover {
+          background-color: #337ab7;
+          color: white;
 
+        }
       }
     }
-    margin-left: 40px;
-    margin-right: 40px;
   }
+
 }

@@ -5,10 +5,12 @@ import Main from './Main';
 
 
 export default class App extends Component {
+
   render() {
+    const isAuth = !!localStorage.getItem('token');
     return (
       <div className="App">
-        <Header/>
+        {isAuth ? <Header/> : null}
         <Main/>
       </div>
     );
