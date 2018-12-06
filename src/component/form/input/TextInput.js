@@ -1,16 +1,19 @@
 import React from 'react'
-import './TextInput.scss'
+import FormElement from '../FormElement'
 import PropTypes from 'prop-types';
-import FieldGroup from '../FieldGroup'
+import './TextInput.scss'
 
-const TextInput = ({ name, value, label, placeholder, onChange, type }) => {
-  return <FieldGroup
-    name={name}
-    type={type}
-    label={label}
-    placeholder={placeholder}
-    onChange={onChange}/>
-};
+export default class TextInput extends FormElement {
+
+  render() {
+    const { name, value, label, placeholder, onChange, type } = this.props;
+    return (<div className="text-input">
+      <label htmlFor={name}>{label}</label>
+      <input id={name} name={name} type={type} value={value} placeholder={placeholder} onChange={onChange}/>
+    </div>);
+  }
+
+}
 
 TextInput.propTypes = {
   name: PropTypes.string.isRequired,
@@ -23,6 +26,4 @@ TextInput.propTypes = {
 TextInput.defaultProps = {
   type: 'text'
 };
-
-export default TextInput;
 

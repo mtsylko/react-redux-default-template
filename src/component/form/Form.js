@@ -1,7 +1,8 @@
 import React from 'react'
 import TextInput from './input/TextInput';
+import FormGroup from './FormGroup'
 
-export default class Form extends React.Component {
+export default class Form extends React.PureComponent {
 
   state = {
     values: {},
@@ -9,15 +10,22 @@ export default class Form extends React.Component {
   };
 
   onChangeDefault = (e) => {
-      const name = e.target.name;
-      const value = e.target.value;
-      const values = { ...this.state.values };
-      values[name] = value;
-      this.setState({ values }, () => {
-        const { values, errors } = this.state;
-        const { onModelChange } =  this.props;
-        if(onModelChange) onModelChange(values, errors);
-      });
+    const name = e.target.name;
+/*
+    const typeSplitIndex = name.indexOf(':');
+    const type = typeSplitIndex > - 1 ? name.substr(typeSplitIndex + 1) : 'object';
+    const pathStr = typeSplitIndex > - 1 ? name.substr(0, typeSplitIndex - 1) : name;
+    const path = pathStr.split('.');
+    */
+
+    const value = e.target.value;
+    const values = { ...this.state.values };
+    values[name] = value;
+    this.setState({ values }, () => {
+      const { values, errors } = this.state;
+      const { onModelChange } =  this.props;
+      if(onModelChange) onModelChange(values, errors);
+    });
   };
 
   onSubmit = (e) => {
@@ -27,32 +35,46 @@ export default class Form extends React.Component {
     submit(values, errors);
   };
 
-  createElementWithProps(item) {
+  createElementWithProps(item, name) {
     const { onChangeDefault } = this;
     let config = {};
     if(item.type === TextInput && !item.props.onChange) {
       config = { onChange: onChangeDefault };
+      if(name) config.name = name + '.' + item.props.name;
     }
     return React.cloneElement(item, config);
   }
 
-  getFields(parent) {
-    if(!parent.props) return [];
-    const { children } = parent.props;
-    if(children && Array.isArray(children)) {
-      return children
+   getFields(element, name, elements = []) {
+    if (element) {
+      if (Array.isArray(element)) {
+        const len = element.length;
+        for(let i = 0; i < len; i++) {
+          this.getFields(element[i], name, elements);
+        }
+      } else {
+        if(element.type === TextInput) {
+          const elementClone = this.createElementWithProps(element, name);
+          elements.push(elementClone);
+        } else if(element.type === FormGroup) {
+          this.getFields(element.props.children, name ? name + '.' + element.name : element.name, elements);
+        }
+      }
     }
-    return this.getFields(children);
-  };
+    return elements;
+  }
+
 
   render() {
-    // const children = this.getFields(this);
+    //const elements = this.getFields.call(this, this.props.children);
     const { children } = this.props;
     const { createElementWithProps, onSubmit } = this;
     const childrenWithProps = children.map(item => createElementWithProps.call(this, item));
-    return <form method='POST' onSubmit={ onSubmit }>
-      {childrenWithProps}
-    </form>;
+    return <div className="form">
+      <form method='POST' onSubmit={ onSubmit }>
+        {childrenWithProps}
+      </form>
+    </div>;
   }
 
 

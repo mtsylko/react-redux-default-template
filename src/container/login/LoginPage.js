@@ -15,8 +15,7 @@ class LoginPage extends React.Component {
 
   render() {
     const isAuth = !!this.props.token;
-    console.log('this.props.token', this.props.token)
-    if(isAuth) return <Redirect to='/'/>
+    if(isAuth) return <Redirect to='/'/>;
     return (<div className="login-page">
       <LoginForm onSubmit={this.onSubmit}/>
     </div>);
