@@ -1,12 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types';
-
 import './Radio.scss'
 
-const Radio = ({ name, value, label, onChange, isActive }) => {
+const Radio = ({ name, value, label, onChange }) => {
   return <div className="radio-group radio">
     <label htmlFor={name}>{label}</label>
-    <input type="radio" name={name} value={value} checked={isActive} onChange={onChange}/>
+    <input type="radio" name={name} value={value} onChange={onChange} /* checked={isActive} *//>
   </div>
 };
 

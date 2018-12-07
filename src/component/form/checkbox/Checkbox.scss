@@ -1,38 +1,17 @@
-.checkbox {
-  padding-bottom: 3%;
-  .checkbox-label {
-    position: relative;
-    top: 3px;
-    right: 3px;
-    font-weight: 500;
-    color: dimgray;
-  }
-  .checkbox-input {
-    visibility: hidden;
+.checkbox-group {
+  margin-bottom: 5px;
+  .group-label {
     display: block;
-    height: 0;
-    width: 0;
-    position: absolute;
-    overflow: hidden;
   }
-  .outer-span {
-    margin-left: 5px;
-    margin-top: 2px;
-    float: right;
-    height: 15px;
-    width: 15px;
-    border: 2px solid orange;
-    padding: 3px;
-    display: inline-block;
-    // position: relative;
-  }
-  [type=checkbox]:checked  {
-    + .outer-span > .inner-span {
-      float: right;
-      height: 15px;
-      width: 15px;
-      display: inline-block;
-      background: orange;
+  .checkbox {
+    display: inline;
+    padding: 5px;
+    margin-right: 5px;
+    label {
+      font-weight: 700;
+      color: #333;
+      position: relative;
+      right: 25px;
     }
   }
 }

@@ -1,9 +1,8 @@
-import React from 'react'
-import FormElement from '../FormElement'
+import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types';
 import './TextInput.scss'
 
-export default class TextInput extends FormElement {
+export default class TextInput extends PureComponent {
 
   render() {
     const { name, value, label, placeholder, onChange, type } = this.props;
