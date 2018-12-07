@@ -1,12 +1,13 @@
 import React from 'react'
 import './Grid.scss'
 
-const Header = ({ columns, sort }) => {
+const Header = ({ columns, onSort }) => {
+
   return (
     <thead>
     <tr key="header" className="">
       {columns.map((column, index) => {
-        return <th key={`${column.name || index}`}>{column.title}</th>
+        return <th onClick={() => onSort(column.name)} key={`${column.name || index}`}>{column.title}</th>
       })}
     </tr>
     </thead>);

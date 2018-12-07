@@ -13,7 +13,8 @@ export default class CheckboxGroup extends PureComponent {
     const { name, options, onChange, label } = this.props;
     const checkboxGroup = [];
     options.forEach((item, index) => {
-      checkboxGroup.push(<Checkbox name={`${name}[${index}]`}
+      checkboxGroup.push(<Checkbox key={item.value}
+                             name={`${name}[${index}]`}
                              label={item.label}
                              value={item.value}
                              onChange={ onChange }/>);

@@ -76,7 +76,7 @@ export default class Pagination extends React.PureComponent  {
     return (
       <div className="pagination">
         <span className="glyphicon glyphicon-chevron-left" href='#' onClick={(e) => onLeftShift(e)}/>
-        {pages.map(page => <Item pageNumber={page} onChoosePage={this.onChoosePage} isActive={activePage === page}/>)}
+        {pages.map(page => <Item key={page} pageNumber={page} onChoosePage={this.onChoosePage} isActive={activePage === page}/>)}
         <span className="glyphicon glyphicon-chevron-right" href='#' onClick={(e) => onRightShift(e)}/>
       </div>
     );

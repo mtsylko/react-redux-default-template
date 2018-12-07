@@ -20,6 +20,10 @@ export default class Grid extends Component {
     pagination : {
       size: 10,
       page: 1
+    },
+    sort: {
+      columnName: null,
+      order: null
     }
   };
 
@@ -43,18 +47,34 @@ export default class Grid extends Component {
   };
 
 
+  onSort = (columnName) => {
+    this.setState({ sort: {columnName} });
+  };
+
+  applyPagination = (dataSource, page, size) => {
+    return dataSource.slice((page - 1) * size, page * size);
+  };
+
+  applySorting = (dataSource, columnName) => {
+    if(!columnName) return dataSource;
+    return dataSource.sort((val1, val2) => {
+      if( val1[columnName] === val2[columnName]) return 0;
+      return val1[columnName] < val2[columnName] ? -1 : 1;
+    });
+  };
+
   render() {
     const { dataSource , columns } = this.props;
-    const { pagination : { page, size } } = this.state;
+    const { pagination : { page, size }, sort: { columnName } } = this.state;
 
     const numberOfPages = Math.ceil(dataSource.length / size);
-    const { onPageChange, onPageSizeChange } = this;
+    const { onPageChange, onPageSizeChange, onSort, applyPagination, applySorting } = this;
     return (<div className="grid">
       <table>
-        <Header columns={columns}/>
-        <tbody>{dataSource.map((item, index) => {
+        <Header columns={columns} onSort={onSort}/>
+        <tbody>{applySorting(applyPagination(dataSource, page, size), columnName).map((item, index) => {
           return <Row id={item.id || index} dataSource={item} columns={columns}/>
-        }).slice((page - 1) * size, page * size)}</tbody>
+        })}</tbody>
       </table>
       <div className="page-navigation">
         <Pagination numberOfPages={numberOfPages} activePage={page} onPageChange={onPageChange}/>

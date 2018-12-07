@@ -13,7 +13,8 @@ export default class RadioGroup extends PureComponent {
     const { name, options, label } = this.props;
     const radioGroup = [];
     options.forEach(item => {
-      radioGroup.push(<Radio name={name}
+      radioGroup.push(<Radio key={item.value}
+                             name={name}
                              value={item.value}
                              label={item.label}
                              onChange={ this.props.onChange }/>);
